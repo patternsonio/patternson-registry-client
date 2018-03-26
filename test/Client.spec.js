@@ -38,6 +38,22 @@ describe('Client', () => {
     );
   });
 
+  it('uses default registry url', async () => {
+    const mock = fetchMock.mock(
+      'https://registry.patternson.io/getGuestCredentials',
+      JSON.stringify({
+        apiUrl: 'https://example.org/api',
+        region: 'moria-central-1',
+        credentials: {},
+      }),
+    );
+    const client = new Client();
+
+    await client.query();
+
+    expect(mock.called()).toBe(true);
+  });
+
   it('fails when auth returns with non-200 status code', async () => {
     expect.assertions(1);
 

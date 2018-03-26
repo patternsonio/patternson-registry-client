@@ -1,3 +1,4 @@
 import './polyfills';
+import Client from './Client';
 
-export { default } from './Client';
+export default Client;

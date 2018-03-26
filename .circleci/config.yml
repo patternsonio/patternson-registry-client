@@ -1,0 +1,93 @@
+defaults: &defaults
+  docker:
+    - image: circleci/node:9
+  working_directory: ~/registryClient
+
+version: 2
+jobs:
+  install:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Create package-lock.json checksum
+          command: sha256sum package-lock.json > .package-lock-sum
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum ".package-lock-sum" }}
+      - run:
+          name: Install
+          command: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum ".package-lock-sum" }}
+      - save_cache:
+          paths:
+            - ~/registryClient
+          key: v1-repo-{{ .Revision }}
+  lint: 
+    <<: *defaults
+    steps:
+      - restore_cache:
+          keys:
+          - v1-repo-{{ .Revision }}
+      - run:
+          name: Lint
+          command: npm run lint
+  test: 
+    <<: *defaults
+    steps:
+      - restore_cache:
+          keys:
+          - v1-repo-{{ .Revision }}
+      - run:
+          name: Test
+          command: npm run test -- --coverage
+  build:
+    <<: *defaults
+    steps:
+      - restore_cache:
+          keys:
+          - v1-repo-{{ .Revision }}
+      - run:
+          name: Build
+          command: npm run build
+      - save_cache:
+          paths:
+            - lib
+          key: v1-build-{{ .Revision }}
+  release:
+    <<: *defaults
+    steps:
+      - restore_cache:
+          keys:
+          - v1-repo-{{ .Revision }}
+      - restore_cache:
+          keys:
+          - v1-build-{{ .Revision }}
+      - run:
+          name: Release
+          command: npm run semantic-release || true
+
+workflows:
+  version: 2
+  test-and-release:
+    jobs:
+      - install
+      - test:
+          requires:
+            - install
+      - lint:
+          requires:
+            - install
+      - build:
+          requires:
+            - test
+            - lint
+      - release:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master

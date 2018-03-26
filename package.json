@@ -1,27 +1,60 @@
 {
-  "name": "patternson-registry-client",
+  "name": "@patternson/registry-client",
   "version": "0.1.0",
   "description": "apollo client for patternson registry",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "babel src -d lib",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/patternsonio/patternson-registry-client.git"
   },
   "author": "Hannes Diercks",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/patternsonio/patternson-registry-client/issues"
   },
   "homepage": "https://github.com/patternsonio/patternson-registry-client#readme",
   "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-jest": "22.4.3",
+    "babel-plugin-transform-object-rest-spread": "6.26.0",
+    "babel-preset-env": "1.6.1",
     "eslint": "4.19.1",
     "eslint-config-airbnb-base": "12.1.0",
     "eslint-config-prettier": "2.9.0",
     "eslint-plugin-import": "2.9.0",
     "eslint-plugin-prettier": "2.6.0",
+    "fetch-mock": "6.3.0",
+    "graphql-tag": "2.8.0",
+    "jest": "22.4.3",
     "prettier": "1.11.1"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!node_modules/**",
+      "!coverage/**",
+      "!lib/**",
+      "!index.js",
+      "!src/polyfills.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
+  },
+  "dependencies": {
+    "aws-appsync": "1.0.14",
+    "aws-sdk": "2.213.1",
+    "babel-runtime": "6.26.0",
+    "isomorphic-fetch": "2.2.1"
   }
 }

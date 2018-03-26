@@ -1,0 +1,7 @@
+__mocks__/
+.circleci/
+coverage/
+node_modules/
+src/
+test/
+.*

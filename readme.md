@@ -1,5 +1,7 @@
 # @patternson/registry-client
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/patternsonio/patternson-registry-client.svg)](https://greenkeeper.io/)
+
 apollo client for [patternson](https://patternson.io/) registry based on [aws-mobile-appsync-sdk-js](https://github.com/awslabs/aws-mobile-appsync-sdk-js).
 
 ## Install

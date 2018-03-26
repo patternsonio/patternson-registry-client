@@ -44,6 +44,10 @@ jobs:
       - run:
           name: Test
           command: npm run test -- --coverage
+      - save_cache:
+          paths:
+            - coverage
+          key: v1-coverage-{{ .Revision }}
   build:
     <<: *defaults
     steps:
@@ -57,6 +61,18 @@ jobs:
           paths:
             - lib
           key: v1-build-{{ .Revision }}
+  codecov:
+    <<: *defaults
+    steps:
+      - restore_cache:
+          keys:
+          - v1-repo-{{ .Revision }}
+      - restore_cache:
+          keys:
+          - v1-coverage-{{ .Revision }}
+      - run:
+          name: Upload coverage
+          command: $(npm bin)/codecov
   release:
     <<: *defaults
     steps:
@@ -85,6 +101,9 @@ workflows:
           requires:
             - test
             - lint
+      - codecov:
+          requires:
+            - test
       - release:
           requires:
             - build

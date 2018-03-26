@@ -26,7 +26,7 @@ async function getClient({
 }
 
 export default class PatternsonRegistryClient {
-  constructor(config) {
+  constructor(config = {}) {
     this.appSyncClient = getClient(config);
   }
   async mutate(...args) {

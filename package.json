@@ -29,7 +29,7 @@
     "eslint": "4.19.1",
     "eslint-config-airbnb-base": "12.1.0",
     "eslint-config-prettier": "2.9.0",
-    "eslint-plugin-import": "2.9.0",
+    "eslint-plugin-import": "2.10.0",
     "eslint-plugin-prettier": "2.6.0",
     "fetch-mock": "6.3.0",
     "graphql-tag": "2.8.0",
@@ -56,9 +56,10 @@
     }
   },
   "dependencies": {
-    "aws-appsync": "1.0.14",
+    "aws-appsync": "1.0.15",
     "aws-sdk": "2.219.1",
     "babel-runtime": "6.26.0",
-    "isomorphic-fetch": "2.2.1"
+    "isomorphic-fetch": "2.2.1",
+    "ws": "3.3.1"
   }
 }

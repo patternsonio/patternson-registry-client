@@ -59,6 +59,7 @@
     "aws-appsync": "1.0.14",
     "aws-sdk": "2.214.1",
     "babel-runtime": "6.26.0",
-    "isomorphic-fetch": "2.2.1"
+    "isomorphic-fetch": "2.2.1",
+    "ws": "3.3.1"
   }
 }

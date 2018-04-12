@@ -29,12 +29,12 @@
     "eslint": "4.19.1",
     "eslint-config-airbnb-base": "12.1.0",
     "eslint-config-prettier": "2.9.0",
-    "eslint-plugin-import": "2.10.0",
+    "eslint-plugin-import": "2.11.0",
     "eslint-plugin-prettier": "2.6.0",
     "fetch-mock": "6.3.0",
     "graphql-tag": "2.8.0",
     "jest": "22.4.3",
-    "prettier": "1.11.1",
+    "prettier": "1.12.0",
     "semantic-release": "15.1.6"
   },
   "jest": {
@@ -57,7 +57,7 @@
   },
   "dependencies": {
     "aws-appsync": "1.0.15",
-    "aws-sdk": "2.220.1",
+    "aws-sdk": "2.224.1",
     "babel-runtime": "6.26.0",
     "isomorphic-fetch": "2.2.1",
     "ws": "3.3.1"

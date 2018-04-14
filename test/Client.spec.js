@@ -151,4 +151,22 @@ describe('Client', () => {
 
     expect(appSyncClient.subscribe).toHaveBeenCalledWith(subscribe);
   });
+
+  it('handles trailing slashes in registryUrl', async () => {
+    fetchMock.mock(
+      'https://example.org/getGuestCredentials',
+      JSON.stringify({
+        credentials: {},
+        apiUrl: 'https://example.org/api',
+        region: 'moria-central-1',
+      }),
+    );
+    const client = new Client({ registryUrl: 'https://example.org/' });
+    const query = Symbol('query');
+    await client.query(query);
+
+    const appSyncClient = await client.appSyncClient;
+
+    expect(appSyncClient.query).toHaveBeenCalledWith(query);
+  });
 });

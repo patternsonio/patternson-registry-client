@@ -60,6 +60,7 @@
     "aws-sdk": "2.224.1",
     "babel-runtime": "6.26.0",
     "isomorphic-fetch": "2.2.1",
+    "url-join": "4.0.0",
     "ws": "3.3.1"
   }
 }

@@ -1,15 +1,16 @@
 import { WebIdentityCredentials } from 'aws-sdk';
+import urlJoin from 'url-join';
 
 function fetchToken({ registryUrl, accessToken }) {
   if (accessToken) {
-    return fetch(`${registryUrl}/getCredentials`, {
+    return fetch(urlJoin(registryUrl, 'getCredentials'), {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
     });
   }
 
-  return fetch(`${registryUrl}/getGuestCredentials`);
+  return fetch(urlJoin(registryUrl, 'getGuestCredentials'));
 }
 
 export default async function getCredentials({ registryUrl, accessToken }) {

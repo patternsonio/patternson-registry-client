@@ -27,6 +27,7 @@ describe('Client', () => {
         url: 'https://example.org/api',
         region: 'moria-central-1',
       }),
+      undefined,
     );
     const { auth } = appSyncClient.$constructor.mock.calls[0][0];
     expect(auth.type).toBe('AWS_IAM');

@@ -4,30 +4,33 @@ import AWSAppSyncClient from 'aws-appsync';
 import { AUTH_TYPE } from 'aws-appsync/lib/link/auth-link';
 import getCredentials from './getCredentials';
 
-async function getClient({
-  registryUrl = 'https://registry.patternson.io',
-  accessToken,
-}) {
+async function getClient(
+  { registryUrl = 'https://registry.patternson.io', accessToken },
+  apolloClientOptions,
+) {
   const { credentials, apiUrl: url, region } = await getCredentials({
     registryUrl,
     accessToken,
   });
 
-  const c = new AWSAppSyncClient({
-    url,
-    region,
-    auth: {
-      type: AUTH_TYPE.AWS_IAM,
-      credentials,
+  const c = new AWSAppSyncClient(
+    {
+      url,
+      region,
+      auth: {
+        type: AUTH_TYPE.AWS_IAM,
+        credentials,
+      },
     },
-  });
+    apolloClientOptions,
+  );
 
   return c.hydrated();
 }
 
 export default class PatternsonRegistryClient {
-  constructor(config = {}) {
-    this.appSyncClient = getClient(config);
+  constructor(config = {}, apolloClientOptions) {
+    this.appSyncClient = getClient(config, apolloClientOptions);
   }
   async mutate(...args) {
     const client = await this.appSyncClient;

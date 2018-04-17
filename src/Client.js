@@ -5,7 +5,11 @@ import { AUTH_TYPE } from 'aws-appsync/lib/link/auth-link';
 import getCredentials from './getCredentials';
 
 async function getClient(
-  { registryUrl = 'https://registry.patternson.io', accessToken },
+  {
+    registryUrl = 'https://registry.patternson.io',
+    accessToken,
+    disableOffline,
+  },
   apolloClientOptions,
 ) {
   const { credentials, apiUrl: url, region } = await getCredentials({
@@ -17,6 +21,7 @@ async function getClient(
     {
       url,
       region,
+      disableOffline,
       auth: {
         type: AUTH_TYPE.AWS_IAM,
         credentials,

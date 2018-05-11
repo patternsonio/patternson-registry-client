@@ -8,7 +8,8 @@
     "build": "babel src -d lib",
     "lint": "eslint .",
     "prepublish": "npm run build",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "update-lockfile": "greenkeeper-lockfile-update && greenkeeper-lockfile-upload"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,7 @@
     "eslint-plugin-prettier": "2.6.0",
     "fetch-mock": "6.3.0",
     "graphql-tag": "2.9.2",
+    "greenkeeper-lockfile": "1.15.0",
     "jest": "22.4.3",
     "prettier": "1.12.0",
     "semantic-release": "15.4.1"

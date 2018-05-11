@@ -18,6 +18,9 @@ jobs:
       - run:
           name: Install
           command: npm install
+      - run:
+          name: 'Update lockfile'
+          command: 'npm run update-lockfile'
       - save_cache:
           paths:
             - node_modules

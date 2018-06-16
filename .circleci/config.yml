@@ -19,8 +19,11 @@ jobs:
           name: Install
           command: npm install
       - run:
+          name: Install greenkeeper-lockfile
+          command: sudo npm install -g greenkeeper-lockfile
+      - run:
           name: 'Update lockfile'
-          command: 'npm run update-lockfile'
+          command: 'greenkeeper-lockfile-update && greenkeeper-lockfile-upload'
       - save_cache:
           paths:
             - node_modules
@@ -29,7 +32,7 @@ jobs:
           paths:
             - ~/registryClient
           key: v1-repo-{{ .Revision }}
-  lint: 
+  lint:
     <<: *defaults
     steps:
       - restore_cache:
@@ -38,7 +41,7 @@ jobs:
       - run:
           name: Lint
           command: npm run lint
-  test: 
+  test:
     <<: *defaults
     steps:
       - restore_cache:

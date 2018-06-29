@@ -56,7 +56,7 @@
     }
   },
   "dependencies": {
-    "aws-appsync": "1.1.2",
+    "aws-appsync": "1.1.4",
     "aws-sdk": "2.263.1",
     "babel-runtime": "6.26.0",
     "isomorphic-fetch": "2.2.1",

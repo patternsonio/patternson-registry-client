@@ -30,7 +30,7 @@
     "eslint-config-airbnb-base": "12.1.0",
     "eslint-config-prettier": "2.9.0",
     "eslint-plugin-import": "2.13.0",
-    "eslint-plugin-prettier": "2.6.1",
+    "eslint-plugin-prettier": "2.6.2",
     "fetch-mock": "6.5.0",
     "graphql-tag": "2.9.2",
     "jest": "23.1.0",

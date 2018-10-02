@@ -37,16 +37,19 @@ export default class PatternsonRegistryClient {
   constructor(config = {}, apolloClientOptions) {
     this.appSyncClient = getClient(config, apolloClientOptions);
   }
+
   async mutate(...args) {
     const client = await this.appSyncClient;
 
     return client.mutate(...args);
   }
+
   async query(...args) {
     const client = await this.appSyncClient;
 
     return client.query(...args);
   }
+
   async subscribe(...args) {
     const client = await this.appSyncClient;
 

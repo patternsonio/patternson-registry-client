@@ -14,13 +14,13 @@ jobs:
           command: sha256sum package-lock.json > .package-lock-sum
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum ".package-lock-sum" }}
+            - v1-dependencies-{{ checksum ".package-lock-sum" }}
       - run:
           name: Install
           command: npm install
       - run:
           name: 'Update lockfile'
-          command: 'sudo npm install -g greenkeeper-lockfile && greenkeeper-lockfile-update && greenkeeper-lockfile-upload'
+          command: "sudo -- sh -c 'npm install -g greenkeeper-lockfile && greenkeeper-lockfile-update && greenkeeper-lockfile-upload'"
       - save_cache:
           paths:
             - node_modules
@@ -34,7 +34,7 @@ jobs:
     steps:
       - restore_cache:
           keys:
-          - v1-repo-{{ .Revision }}
+            - v1-repo-{{ .Revision }}
       - run:
           name: Lint
           command: npm run lint
@@ -43,7 +43,7 @@ jobs:
     steps:
       - restore_cache:
           keys:
-          - v1-repo-{{ .Revision }}
+            - v1-repo-{{ .Revision }}
       - run:
           name: Test
           command: npm run test -- --coverage
@@ -56,7 +56,7 @@ jobs:
     steps:
       - restore_cache:
           keys:
-          - v1-repo-{{ .Revision }}
+            - v1-repo-{{ .Revision }}
       - run:
           name: Build
           command: npm run build
@@ -69,10 +69,10 @@ jobs:
     steps:
       - restore_cache:
           keys:
-          - v1-repo-{{ .Revision }}
+            - v1-repo-{{ .Revision }}
       - restore_cache:
           keys:
-          - v1-coverage-{{ .Revision }}
+            - v1-coverage-{{ .Revision }}
       - run:
           name: Upload coverage
           command: $(npm bin)/codecov
@@ -81,10 +81,10 @@ jobs:
     steps:
       - restore_cache:
           keys:
-          - v1-repo-{{ .Revision }}
+            - v1-repo-{{ .Revision }}
       - restore_cache:
           keys:
-          - v1-build-{{ .Revision }}
+            - v1-build-{{ .Revision }}
       - run:
           name: Release
           command: npm run semantic-release || true

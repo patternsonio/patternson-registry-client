@@ -34,7 +34,7 @@
     "fetch-mock": "7.3.1",
     "graphql-tag": "2.10.1",
     "jest": "23.6.0",
-    "prettier": "1.15.3",
+    "prettier": "1.17.0",
     "semantic-release": "15.13.3"
   },
   "jest": {
